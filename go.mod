@@ -7,7 +7,6 @@ toolchain go1.24.9
 require (
 	github.com/cloudwego/eino v0.6.1
 	github.com/cloudwego/eino-ext/components/model/ark v0.1.50
-	github.com/volcengine/volcengine-go-sdk v1.1.49
 )
 
 require (
@@ -36,6 +35,7 @@ require (
 	github.com/slongfield/pyfmt v0.0.0-20220222012616-ea85ff4c361f // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/volcengine/volc-sdk-golang v1.0.23 // indirect
+	github.com/volcengine/volcengine-go-sdk v1.1.49 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
 	github.com/yargevad/filepathx v1.0.0 // indirect
 	golang.org/x/arch v0.11.0 // indirect
