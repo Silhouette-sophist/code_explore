@@ -2,6 +2,7 @@ package compose
 
 import (
 	"code_explore/internal/chat_model"
+	"code_explore/internal/model_callback"
 	"code_explore/internal/model_tool"
 	"context"
 	"log"
@@ -44,6 +45,7 @@ func NewChatModelWithTool(ctx context.Context) (compose.Runnable[[]*schema.Messa
 	if err != nil {
 		log.Fatal(err)
 	}
+	compose.WithCallbacks(model_callback.NewModelFinishTraceCallback(ctx))
 	chain := compose.NewChain[[]*schema.Message, []*schema.Message]()
 	chain.
 		AppendChatModel(chatModel, compose.WithNodeName("chat_model")).

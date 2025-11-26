@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 
+	"github.com/bytedance/gopkg/util/logger"
 	"github.com/cloudwego/eino/components/tool"
 	"github.com/cloudwego/eino/schema"
 )
@@ -43,19 +44,24 @@ func (lt *ListFile) Info(ctx context.Context) (*schema.ToolInfo, error) {
 func (lt *ListFile) InvokableRun(ctx context.Context, argumentsInJSON string, opts ...tool.Option) (string, error) {
 	var listFileParam ListFileParam
 	if err := json.Unmarshal([]byte(argumentsInJSON), &listFileParam); err != nil {
+		logger.CtxInfof(ctx, "unmarshal argumentsInJSON fail: %v", err)
 		return "", err
 	}
 	stat, err := os.Stat(listFileParam.Directory)
 	if err != nil {
+		logger.CtxInfof(ctx, "stat fail: %v", err)
 		return "", err
 	}
 	if !stat.IsDir() {
+		logger.CtxInfof(ctx, "not dir: %v", listFileParam.Directory)
 		return "", errors.New("not a directory")
 	}
 	dirs, err := os.ReadDir(listFileParam.Directory)
 	if err != nil {
+		logger.CtxInfof(ctx, "read dir fail: %v", err)
 		return "", err
 	}
+	logger.CtxInfof(ctx, "read dir: %v", listFileParam.Directory)
 	items := make([]ListFileItem, len(dirs))
 	for _, dir := range dirs {
 		items = append(items, ListFileItem{
@@ -66,6 +72,7 @@ func (lt *ListFile) InvokableRun(ctx context.Context, argumentsInJSON string, op
 	}
 	marshal, err := json.Marshal(items)
 	if err != nil {
+		logger.CtxInfof(ctx, "marshal fail: %v", err)
 		return "", err
 	}
 	return string(marshal), nil
