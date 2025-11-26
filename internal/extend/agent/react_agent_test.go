@@ -1,11 +1,14 @@
 package agent
 
 import (
+	"code_explore/internal/extend/invoke_option"
 	"context"
 	"fmt"
 	"path/filepath"
 	"testing"
 
+	"github.com/cloudwego/eino/compose"
+	"github.com/cloudwego/eino/flow/agent"
 	"github.com/cloudwego/eino/schema"
 )
 
@@ -19,6 +22,22 @@ func TestNewReactAgent(t *testing.T) {
 	generate, err := agent.Generate(ctx, []*schema.Message{
 		schema.UserMessage(fmt.Sprintf("帮我看看目录%s下是否有go.mod文件", rootDir)),
 	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("generate: %+v", *generate)
+}
+
+func TestNewReactAgentWithHandlers(t *testing.T) {
+	ctx := context.Background()
+	rootDir, _ := filepath.Abs("./../..")
+	reactAgent, err := NewReactAgent(ctx)
+	if err != nil {
+		t.Fatal(err)
+	}
+	generate, err := reactAgent.Generate(ctx, []*schema.Message{
+		schema.UserMessage(fmt.Sprintf("帮我看看目录%s下是否有go.mod文件", rootDir)),
+	}, agent.WithComposeOptions(compose.WithCallbacks(invoke_option.ReactDefaultCallback(ctx))))
 	if err != nil {
 		t.Fatal(err)
 	}
