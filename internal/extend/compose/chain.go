@@ -1,8 +1,8 @@
 package compose
 
 import (
-	"code_explore/internal/chat_model"
-	"code_explore/internal/model_tool"
+	"code_explore/internal/base/chat_model"
+	"code_explore/internal/base/model_tool"
 	"context"
 	"log"
 

@@ -1,17 +1,16 @@
 package chat_model
 
 import (
-	"code_explore/internal/model_callback"
+	"code_explore/internal/base/model_callback"
 	"context"
 	"testing"
 
-	"github.com/cloudwego/eino/callbacks"
 	"github.com/cloudwego/eino/schema"
 )
 
 func TestModel(t *testing.T) {
 	ctx := context.Background()
-	callbacks.AppendGlobalHandlers(model_callback.NewModelFinishTraceCallback(ctx))
+	model_callback.InitAppendGlobalHandlers(ctx, model_callback.NewModelFinishTraceCallback(ctx))
 	model, err := NewChatModel(ctx, DoubaoThinking)
 	if err != nil {
 		t.Fatal(err)

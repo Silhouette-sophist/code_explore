@@ -1,7 +1,7 @@
 package compose
 
 import (
-	"code_explore/internal/invoke_option"
+	"code_explore/internal/extend/invoke_option"
 	"context"
 	"fmt"
 	"path/filepath"

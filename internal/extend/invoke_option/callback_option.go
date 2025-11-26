@@ -1,7 +1,7 @@
 package invoke_option
 
 import (
-	"code_explore/internal/model_callback"
+	"code_explore/internal/base/model_callback"
 	"context"
 
 	"github.com/cloudwego/eino/compose"
