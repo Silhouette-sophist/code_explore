@@ -2,7 +2,6 @@ package compose
 
 import (
 	"code_explore/internal/chat_model"
-	"code_explore/internal/model_callback"
 	"code_explore/internal/model_tool"
 	"context"
 	"log"
@@ -14,7 +13,7 @@ import (
 
 func NewChatModelWithTool(ctx context.Context) (compose.Runnable[[]*schema.Message, []*schema.Message], error) {
 	// 1.初始化 tools
-	todoTools := []tool.BaseTool{
+	modelTools := []tool.BaseTool{
 		&model_tool.ListFile{},
 	}
 
@@ -25,9 +24,9 @@ func NewChatModelWithTool(ctx context.Context) (compose.Runnable[[]*schema.Messa
 	}
 
 	// 3.获取工具信息并绑定到 ChatModel
-	toolInfos := make([]*schema.ToolInfo, 0, len(todoTools))
-	for _, tool := range todoTools {
-		info, err := tool.Info(ctx)
+	toolInfos := make([]*schema.ToolInfo, 0, len(modelTools))
+	for _, modelTool := range modelTools {
+		info, err := modelTool.Info(ctx)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -40,12 +39,11 @@ func NewChatModelWithTool(ctx context.Context) (compose.Runnable[[]*schema.Messa
 
 	// 4.编排调用链
 	todoToolsNode, err := compose.NewToolNode(context.Background(), &compose.ToolsNodeConfig{
-		Tools: todoTools,
+		Tools: modelTools,
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	compose.WithCallbacks(model_callback.NewModelFinishTraceCallback(ctx))
 	chain := compose.NewChain[[]*schema.Message, []*schema.Message]()
 	chain.
 		AppendChatModel(chatModel, compose.WithNodeName("chat_model")).

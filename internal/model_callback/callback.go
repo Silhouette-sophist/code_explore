@@ -11,7 +11,7 @@ import (
 
 func NewModelFinishTraceCallback(ctx context.Context) callbacks.Handler {
 	return callbacks.NewHandlerBuilder().OnEndFn(func(ctx context.Context, info *callbacks.RunInfo, output callbacks.CallbackOutput) context.Context {
-		if callbackOutput, ok := output.(model.CallbackOutput); ok {
+		if callbackOutput, ok := output.(*model.CallbackOutput); ok {
 			logger.CtxInfof(ctx, "[OnEndFn] %v %+v", *info, callbackOutput.TokenUsage)
 		}
 		return ctx

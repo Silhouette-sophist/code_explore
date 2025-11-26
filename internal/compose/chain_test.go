@@ -1,6 +1,7 @@
 package compose
 
 import (
+	"code_explore/internal/invoke_option"
 	"context"
 	"fmt"
 	"path/filepath"
@@ -21,7 +22,7 @@ func TestNewChatModelWithTool(t *testing.T) {
 	}
 	output, err := tool.Invoke(ctx, []*schema.Message{
 		schema.UserMessage(fmt.Sprintf("帮我分析一下%s目录结构", abs)),
-	})
+	}, invoke_option.NewInvokeCallbackOption(ctx))
 	if err != nil {
 		t.Fatal(err)
 	}
