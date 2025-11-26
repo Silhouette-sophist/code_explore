@@ -32,6 +32,7 @@ func NewChatModelCallback(ctx context.Context) callbacks2.Handler {
 			return ctx
 		},
 		OnEndWithStreamOutput: func(ctx context.Context, runInfo *callbacks2.RunInfo, output *schema.StreamReader[*model.CallbackOutput]) context.Context {
+			logger.CtxInfof(ctx, "[OnEndWithStreamOutput] %v", *runInfo)
 			return ctx
 		},
 	}).Handler()
