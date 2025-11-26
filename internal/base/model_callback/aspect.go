@@ -10,7 +10,7 @@ import (
 	"github.com/cloudwego/eino/utils/callbacks"
 )
 
-// NewChatModelCallback 使用handlerTemplate包含HandlerHelper，handlerTemplate实现了callbacks.Handler，会基于runInfo对不同模块进行callback
+// NewChatModelCallback todo 2.使用handlerTemplate包含HandlerHelper，handlerTemplate实现了callbacks.Handler，会基于runInfo对不同模块进行callback
 /**
 type HandlerHelper struct {
 	promptHandler      *PromptCallbackHandler

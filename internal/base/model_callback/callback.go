@@ -9,6 +9,7 @@ import (
 	"github.com/cloudwego/eino/schema"
 )
 
+// NewModelFinishTraceCallback todo 1.对全部组件加上handler，要自己解析类型
 func NewModelFinishTraceCallback(ctx context.Context) callbacks.Handler {
 	return callbacks.NewHandlerBuilder().OnEndFn(func(ctx context.Context, info *callbacks.RunInfo, output callbacks.CallbackOutput) context.Context {
 		if callbackOutput, ok := output.(*model.CallbackOutput); ok {
