@@ -22,12 +22,14 @@ func NewReactAgent(ctx context.Context) (*react.Agent, error) {
 	tools := compose.ToolsNodeConfig{
 		Tools: []tool.BaseTool{
 			&model_tool.ListFile{},
+			&model_tool.ViewFile{},
 		},
 	}
 	// 3初始化agent
 	agent, err := react.NewAgent(ctx, &react.AgentConfig{
 		ToolCallingModel: chatModel,
 		ToolsConfig:      tools,
+		MaxStep:          200,
 	})
 	if err != nil {
 		log.Fatal(err)

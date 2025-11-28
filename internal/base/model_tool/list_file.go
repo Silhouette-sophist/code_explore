@@ -6,6 +6,7 @@ import (
 	"errors"
 	"os"
 	"path"
+	"strings"
 
 	"github.com/bytedance/gopkg/util/logger"
 	"github.com/cloudwego/eino/components/tool"
@@ -47,6 +48,7 @@ func (lt *ListFile) InvokableRun(ctx context.Context, argumentsInJSON string, op
 		logger.CtxInfof(ctx, "unmarshal argumentsInJSON fail: %v", err)
 		return "", err
 	}
+	logger.CtxInfof(ctx, "listFileParam: %v", listFileParam)
 	stat, err := os.Stat(listFileParam.Directory)
 	if err != nil {
 		logger.CtxInfof(ctx, "stat fail: %v", err)
@@ -56,14 +58,21 @@ func (lt *ListFile) InvokableRun(ctx context.Context, argumentsInJSON string, op
 		logger.CtxInfof(ctx, "not dir: %v", listFileParam.Directory)
 		return "", errors.New("not a directory")
 	}
+	if strings.HasPrefix(stat.Name(), ".") {
+		logger.CtxInfof(ctx, "hidden dir: %v", listFileParam.Directory)
+		return "", errors.New("hidden dir")
+	}
 	dirs, err := os.ReadDir(listFileParam.Directory)
 	if err != nil {
 		logger.CtxInfof(ctx, "read dir fail: %v", err)
 		return "", err
 	}
 	logger.CtxInfof(ctx, "read dir: %v", listFileParam.Directory)
-	items := make([]ListFileItem, len(dirs))
+	items := make([]ListFileItem, 0, len(dirs))
 	for _, dir := range dirs {
+		if strings.HasPrefix(dir.Name(), ".") {
+			continue
+		}
 		items = append(items, ListFileItem{
 			Path: path.Join(listFileParam.Directory, dir.Name()),
 			Dir:  dir.IsDir(),

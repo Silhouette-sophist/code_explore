@@ -36,7 +36,7 @@ func TestNewReactAgentWithHandlers(t *testing.T) {
 		t.Fatal(err)
 	}
 	generate, err := reactAgent.Generate(ctx, []*schema.Message{
-		schema.UserMessage(fmt.Sprintf("帮我看看目录%s下是否有go.mod文件", rootDir)),
+		schema.UserMessage(fmt.Sprintf("帮我看看仓库%s依赖了哪些包", rootDir)),
 	}, agent.WithComposeOptions(compose.WithCallbacks(invoke_option.ReactDefaultCallback(ctx))))
 	if err != nil {
 		t.Fatal(err)
