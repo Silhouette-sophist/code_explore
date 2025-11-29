@@ -10,29 +10,16 @@ import (
 	"github.com/joho/godotenv"
 )
 
-type ModelType string
-
 const (
-	DoubaoThinking ModelType = "ark"
-	DeepSeek       ModelType = "deep_seek"
-	DefaultModel   ModelType = "default"
-	deepSeekModel            = "deepseek-v3-1-terminus"
-	doubaoModel              = "doubao-seed-1-6-thinking-250715"
-	onlineModelId            = "ep-20251129233129-h27nn"
+	ApiKey  = "arkApiKey"
+	ModelId = "onlineModelId"
 )
 
 // NewChatModel 创建chatModel实例，当前均有ark提供模型服务
-func NewChatModel(ctx context.Context, modelType ModelType) (*ark.ChatModel, error) {
+func NewChatModel(ctx context.Context) (*ark.ChatModel, error) {
 	modelConfig := &ark.ChatModelConfig{
-		APIKey: GetEnv("arkApiKey", ""),
-	}
-	switch modelType {
-	case DoubaoThinking:
-		modelConfig.Model = doubaoModel
-	case DeepSeek:
-		modelConfig.Model = deepSeekModel
-	default:
-		modelConfig.Model = onlineModelId
+		APIKey: GetEnv(ApiKey, ""),
+		Model:  GetEnv(ModelId, ""),
 	}
 	return ark.NewChatModel(ctx, modelConfig)
 }

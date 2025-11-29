@@ -11,7 +11,7 @@ import (
 func TestModel(t *testing.T) {
 	ctx := context.Background()
 	model_callback.InitAppendGlobalHandlers(ctx, model_callback.NewModelFinishTraceCallback(ctx))
-	model, err := NewChatModel(ctx, DoubaoThinking)
+	model, err := NewChatModel(ctx)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -27,7 +27,7 @@ func TestModel(t *testing.T) {
 func TestModelWithCallback(t *testing.T) {
 	ctx := context.Background()
 	model_callback.InitAppendGlobalHandlers(ctx, model_callback.NewChatModelCallback(ctx))
-	model, err := NewChatModel(ctx, DoubaoThinking)
+	model, err := NewChatModel(ctx)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -42,7 +42,7 @@ func TestModelWithCallback(t *testing.T) {
 
 func TestModelWithInitCallback(t *testing.T) {
 	ctx := context.Background()
-	model, err := NewChatModel(ctx, DefaultModel)
+	model, err := NewChatModel(ctx)
 	if err != nil {
 		t.Fatal(err)
 	}
