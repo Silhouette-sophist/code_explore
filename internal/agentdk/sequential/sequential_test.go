@@ -29,7 +29,7 @@ func TestNewPlanAgent(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		fmt.Println(message)
-		fmt.Println(event)
+		fmt.Println("=====message=====", message)
+		fmt.Println("=====event=====", event)
 	}
 }
