@@ -5,14 +5,15 @@ go 1.24.0
 toolchain go1.24.9
 
 require (
+	github.com/bytedance/gopkg v0.1.3
 	github.com/cloudwego/eino v0.6.1
 	github.com/cloudwego/eino-ext/components/model/ark v0.1.50
+	github.com/joho/godotenv v1.5.1
 )
 
 require (
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
-	github.com/bytedance/gopkg v0.1.3 // indirect
 	github.com/bytedance/sonic v1.14.1 // indirect
 	github.com/bytedance/sonic/loader v0.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect

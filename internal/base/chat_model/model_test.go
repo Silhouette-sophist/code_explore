@@ -42,7 +42,7 @@ func TestModelWithCallback(t *testing.T) {
 
 func TestModelWithInitCallback(t *testing.T) {
 	ctx := context.Background()
-	model, err := NewChatModel(ctx, DoubaoThinking)
+	model, err := NewChatModel(ctx, DefaultModel)
 	if err != nil {
 		t.Fatal(err)
 	}
