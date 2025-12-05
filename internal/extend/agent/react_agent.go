@@ -13,7 +13,7 @@ import (
 
 func NewReactAgent(ctx context.Context) (*react.Agent, error) {
 	// 1.chatModel创建
-	chatModel, err := chat_model.NewChatModel(ctx, chat_model.DoubaoThinking)
+	chatModel, err := chat_model.NewChatModel(ctx)
 	if err != nil {
 		log.Fatal(err)
 		return nil, err

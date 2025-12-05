@@ -18,7 +18,7 @@ func NewChatModelWithTool(ctx context.Context) (compose.Runnable[[]*schema.Messa
 	}
 
 	// 2.创建并配置 ChatModel
-	chatModel, err := chat_model.NewChatModel(ctx, chat_model.DoubaoThinking)
+	chatModel, err := chat_model.NewChatModel(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
