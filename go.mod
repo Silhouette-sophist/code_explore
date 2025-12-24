@@ -10,7 +10,8 @@ require (
 	github.com/cloudwego/eino-ext/components/embedding/ark v0.1.1
 	github.com/cloudwego/eino-ext/components/indexer/es8 v0.0.0-20251223041451-fede3afb5715
 	github.com/cloudwego/eino-ext/components/model/ark v0.1.50
-	github.com/elastic/go-elasticsearch/v8 v8.19.1
+	github.com/cloudwego/eino-ext/components/retriever/es8 v0.0.0-20251223041451-fede3afb5715
+	github.com/elastic/go-elasticsearch/v8 v8.16.0
 	github.com/joho/godotenv v1.5.1
 )
 

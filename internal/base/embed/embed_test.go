@@ -19,6 +19,6 @@ func TestEmbed(t *testing.T) {
 		t.Fatal(err)
 	}
 	for i, embedding := range embeddings {
-		t.Logf("embedding %d: %v", i, embedding)
+		t.Logf("embedding %d %d %v", i, len(embedding), embedding)
 	}
 }

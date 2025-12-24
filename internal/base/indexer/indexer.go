@@ -20,7 +20,7 @@ const (
 
 func NewEsIndexer(ctx context.Context) (*es8.Indexer, error) {
 	client, err := elasticsearch.NewClient(elasticsearch.Config{
-		Addresses: []string{"https://localhost:9200"},
+		Addresses: []string{"http://localhost:9200"},
 	})
 	if err != nil {
 		log.Panicf("connect es8 failed, err=%v", err)
